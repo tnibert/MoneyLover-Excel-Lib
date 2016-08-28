@@ -1,0 +1,28 @@
+- splice into payday intervals -----
+
+- sort by date
+	- for test purposes reverse
+
+- sort by type ---- boom, done
+
+- sort by date within type
+
+- add categories together -- current working
+
+extra)
+add and remove entries
+
+-------
+for sorting by multiple criteria
+perhaps create sublists
+
+-------
+organization:
+columns:
+a - id number
+b - category
+c - amount
+d - note
+e - wallet
+f - currency
+g - date
