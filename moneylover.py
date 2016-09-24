@@ -36,7 +36,8 @@ def loadMLWorkbook(workbkfname):
 	rowClassList = []
 
 	for line in range(1, originalSheet.max_row):
-		rowClassList.append(mlRow(originalSheet.rows[line]))
+		#print tuple(originalSheet.rows)[1]
+		rowClassList.append(mlRow(tuple(originalSheet.rows)[line]))
 	return rowClassList	#returns list of mlRow objects
 
 
