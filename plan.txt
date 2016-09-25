@@ -1,9 +1,9 @@
-- splice into payday intervals -----
+- splice
+	- by category, currently there is a bug where empty lists are generated
 
-- sort by date
-	- for test purposes reverse
+- sort by date - done
 
-- sort by type ---- boom, done
+- sort by type - boom, done
 
 - sort by date within type
 

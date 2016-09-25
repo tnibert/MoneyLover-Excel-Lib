@@ -78,6 +78,33 @@ def sortByDate(workbklist):
 		elem.date = datetime.datetime.strftime(elem.date, "%m/%d/%Y")	#restore to original text formate
 	return sortedlist
 
+#splice mlRows list based on criteria, return list of uniform category lists
+def spliceByCategory(workbklist):
+	catsortedlist = sortByCategory(workbklist)
+	workinglist = []
+	toreturn = []
+	i = 0
+	while(i < len(catsortedlist)):
+		if(i != (len(catsortedlist)-1) and catsortedlist[i].category == catsortedlist[i+1].category):
+			workinglist.append(catsortedlist[i])	#add elem to workinglist
+		elif(i == len(catsortedlist)-1):		#but what happens if we only have one thing in the spreadsheet?
+			if(catsortedlist[i].category == catsortedlist[i-1].category):
+				workinglist.append(catsortedlist[i])
+			else:
+				toreturn.append(workinglist)
+				workinglist = []
+				workinglist.append(catsortedlist[i])
+				toreturn.append(workinglist)
+		else:
+			toreturn.append(workinglist)	#add full workinglist to the array to be returned
+			workinglist = []		#reset the workinglist 
+		i+=1
+	return toreturn
+
+
+def spliceDateRange(startdate, enddate):
+	return 0
+
 #provide mlRows list as an argument and write it out to a new excel file specified by string newFileName
 def exportToNewWorkbook(header, mlWkbkClassList, newFileName):
 	#we use the generateArray() function so that we can double iterate
