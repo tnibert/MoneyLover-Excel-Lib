@@ -1,5 +1,6 @@
 import openpyxl
 from operator import attrgetter
+import datetime
 
 #this class is a MoneyLover row
 #each row in the excel file becomes a class
@@ -25,8 +26,7 @@ class mlRow():
 
 		print "\n"
 
-
-#take a file name as argument and return previously mentioned list of mlRow classes
+#take a file name as argument and return tuple containing previously mentioned list of mlRow classes and header
 def loadMLWorkbook(workbkfname):
 	#load MoneyLover generated workbook
 	originalWorkbook = openpyxl.load_workbook(workbkfname)
@@ -34,11 +34,12 @@ def loadMLWorkbook(workbkfname):
 
 	#list of rows in mlRow class format
 	rowClassList = []
+	header = mlRow(tuple(originalSheet.rows)[0])		#figure out how to keep green color for header
 
-	for line in range(1, originalSheet.max_row):
+	for line in range(1, originalSheet.max_row):		#start at 1, line 0 is category names
 		#print tuple(originalSheet.rows)[1]
 		rowClassList.append(mlRow(tuple(originalSheet.rows)[line]))
-	return rowClassList	#returns list of mlRow objects
+	return rowClassList, header	#returns list of mlRow objects, header
 
 
 #take the mlRow class list and generate a double indexed array
@@ -69,11 +70,19 @@ def sortByCategory(workbklist):
 	
 	return sorted(workbklist, key=attrgetter('category'))
 
+def sortByDate(workbklist):
+	for elem in workbklist:
+		elem.date = datetime.datetime.strptime(elem.date, "%m/%d/%Y")	#turn into datetime obj
+	sortedlist = sorted(workbklist, key=attrgetter('date'))
+	for elem in workbklist:
+		elem.date = datetime.datetime.strftime(elem.date, "%m/%d/%Y")	#restore to original text formate
+	return sortedlist
 
 #provide mlRows list as an argument and write it out to a new excel file specified by string newFileName
-def exportToNewWorkbook(mlWkbkClassList, newFileName):
+def exportToNewWorkbook(header, mlWkbkClassList, newFileName):
 	#we use the generateArray() function so that we can double iterate
 	#with for loops and easily assign the cells in the new sheet
+	mlWkbkClassList.insert(0, header)
 	genArray = generateArray(mlWkbkClassList)
 
 	newWorkbook = openpyxl.Workbook()
@@ -81,7 +90,7 @@ def exportToNewWorkbook(mlWkbkClassList, newFileName):
 
 	i = 1		#sometimes I wish I was working in C
 	for arrObj in genArray:		#for each row
-		for j in range(0,6):	#for each column
+		for j in range(0,7):	#for each column
 			newSheet.cell(row=i, column=(j+1)).value = arrObj[j]
 		i+=1
 

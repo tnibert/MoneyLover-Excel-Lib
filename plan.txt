@@ -7,10 +7,13 @@
 
 - sort by date within type
 
-- add categories together -- current working
+- add categories together
 
 extra)
 add and remove entries
+
+-------
+are we dealing with a class list or a double indexed array?
 
 -------
 for sorting by multiple criteria

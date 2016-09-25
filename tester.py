@@ -2,13 +2,14 @@ from moneylover import *
 #import calculations as calc
 
 #sortByCategory("test.xlsx")
-lsClass = loadMLWorkbook("test.xlsx")
-for x in lsClass:
-	x.display()
-#lsList = rowsToList(lsClass)
+lsClass, hdr = loadMLWorkbook("test.xlsx")
+hdr.display()
+#for x in lsClass:
+#	x.display()
+lsList = generateArray(lsClass)
 #print lsList
-#sortedClassList = sortByCategory(lsClass)
+sortedClassList = sortByCategory(lsClass)
 #for x in sortedClassList:
 #       x.display()
-#exportToNewWorkbook(sortedClassList, "testexport.xlsx")
+exportToNewWorkbook(hdr, sortedClassList, "testexport.xlsx")
 #calc.addByCategory()
