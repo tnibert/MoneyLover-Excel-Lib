@@ -1,9 +1,11 @@
 - splice
-	- by category, currently there is a bug where empty lists are generated
+	- by category - done
+	- return date splice
+	- return a list of one particular category
 
 - sort by date - done
 
-- sort by type - boom, done
+- sort by type - done
 
 - sort by date within type
 
@@ -11,9 +13,6 @@
 
 extra)
 add and remove entries
-
--------
-are we dealing with a class list or a double indexed array?
 
 -------
 for sorting by multiple criteria
