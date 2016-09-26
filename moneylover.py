@@ -91,14 +91,16 @@ def spliceByCategory(workbklist):
 			if(catsortedlist[i].category == catsortedlist[i-1].category):
 				workinglist.append(catsortedlist[i])
 			else:
-				toreturn.append(workinglist)
+				#toreturn.append(workinglist)		#I believe this line is detrimental and unnecessary
 				workinglist = []
 				workinglist.append(catsortedlist[i])
-				toreturn.append(workinglist)
-		else:
+				
+			toreturn.append(workinglist)
+		elif(len(workinglist) != 0):
 			toreturn.append(workinglist)	#add full workinglist to the array to be returned
 			workinglist = []		#reset the workinglist 
 		i+=1
+
 	return toreturn
 
 

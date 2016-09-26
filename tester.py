@@ -11,9 +11,13 @@ lsList = generateArray(lsClass)
 #sortedClassList = sortByCategory(lsClass)
 #sortedClassList = sortByDate(lsClass)
 separatedcats = spliceByCategory(lsClass)
-
-for x in separatedcats[6]:
-	x.display()
+for x in separatedcats:
+	if len(x) == 0:
+		print "EMPTY"
+	else: 
+		print x[0].category + " " + str(len(x))
+#for x in separatedcats[6]:
+#	x.display()
 #for x in separatedcats:
 #	for y in x:
 #		print y.category
