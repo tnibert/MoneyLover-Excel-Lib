@@ -82,25 +82,33 @@ def sortByDate(workbklist):
 def spliceByCategory(workbklist):
 	catsortedlist = sortByCategory(workbklist)
 	workinglist = []
+	workinglist.append(catsortedlist[0])		#what if passed empty list?
 	toreturn = []
 	i = 0
-	while(i < len(catsortedlist)):
-		if(i != (len(catsortedlist)-1) and catsortedlist[i].category == catsortedlist[i+1].category):
-			workinglist.append(catsortedlist[i])	#add elem to workinglist
-		elif(i == len(catsortedlist)-1):		#but what happens if we only have one thing in the spreadsheet?
-			if(catsortedlist[i].category == catsortedlist[i-1].category):
-				workinglist.append(catsortedlist[i])
-			else:
-				#toreturn.append(workinglist)		#I believe this line is detrimental and unnecessary
-				workinglist = []
-				workinglist.append(catsortedlist[i])
-				
+	while(i < len(catsortedlist)-1):
+#		if(i != (len(catsortedlist)-1) and catsortedlist[i].category == catsortedlist[i+1].category):
+#			workinglist.append(catsortedlist[i])	#add elem to workinglist
+#		elif(i == len(catsortedlist)-1):		#but what happens if we only have one thing in the spreadsheet?
+#			if(catsortedlist[i].category == catsortedlist[i-1].category):
+#				workinglist.append(catsortedlist[i])
+#			else:
+#				#toreturn.append(workinglist)		#I believe this line is detrimental and unnecessary
+#				workinglist = []
+#				workinglist.append(catsortedlist[i])
+#				
+#			toreturn.append(workinglist)
+#		elif(len(workinglist) != 0):
+#			toreturn.append(workinglist)	#add full workinglist to the array to be returned
+#			workinglist = []		#reset the workinglist 
+		if(catsortedlist[i].category == catsortedlist[i+1].category):
+			workinglist.append(catsortedlist[i+1])
+		else:
 			toreturn.append(workinglist)
-		elif(len(workinglist) != 0):
-			toreturn.append(workinglist)	#add full workinglist to the array to be returned
-			workinglist = []		#reset the workinglist 
+			workinglist = []
+			workinglist.append(catsortedlist[i+1])
 		i+=1
 
+	toreturn.append(workinglist)
 	return toreturn
 
 
