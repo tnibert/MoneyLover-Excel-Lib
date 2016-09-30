@@ -39,6 +39,11 @@ def loadMLWorkbook(workbkfname):
 	for line in range(1, originalSheet.max_row):		#start at 1, line 0 is category names
 		#print tuple(originalSheet.rows)[1]
 		rowClassList.append(mlRow(tuple(originalSheet.rows)[line]))
+
+	#convert all dates to datetime objects
+	for elem in rowClassList:
+                elem.date = datetime.datetime.strptime(elem.date, "%m/%d/%Y")
+
 	return rowClassList, header	#returns list of mlRow objects, header
 
 
@@ -46,6 +51,7 @@ def loadMLWorkbook(workbkfname):
 #return said double indexed array
 #the purpose for this is that it is easier to work with in some contexts
 #for example, writing out to a new excel file
+#I believe that currently that is the only place this is used... be on look out for problems with datetime object conversions...
 def generateArray(rowClassList):	#takes argument of mlRows class and converts to a conventional array
 	numRows = len(rowClassList)
 	rowArrayList = []		#array is [rows][columns]
@@ -67,16 +73,12 @@ def generateArray(rowClassList):	#takes argument of mlRows class and converts to
 
 #take the mlRows list as an argument, sort it, and return the sorted list
 def sortByCategory(workbklist):	
-	
+
 	return sorted(workbklist, key=attrgetter('category'))
 
 def sortByDate(workbklist):
-	for elem in workbklist:
-		elem.date = datetime.datetime.strptime(elem.date, "%m/%d/%Y")	#turn into datetime obj
-	sortedlist = sorted(workbklist, key=attrgetter('date'))
-	for elem in workbklist:
-		elem.date = datetime.datetime.strftime(elem.date, "%m/%d/%Y")	#restore to original text formate
-	return sortedlist
+
+	return sorted(workbklist, key=attrgetter('date'))
 
 #splice mlRows list based on criteria, return list of uniform category lists
 def spliceByCategory(workbklist):
@@ -123,9 +125,8 @@ def spliceDateRange(startdate, enddate, workbklist):
 
 #recursive function for binary search
 #returns object of first instance found of given date
-#takes a datetime object and an mlRow class list as arguments
-#could be made better by returning a list of all instances
-#but how to do without breaking recursion
+#takes a datetime object and a sorted mlRow class list as arguments
+#for internal library use, reference directly from your code at your own peril
 def dateSearch(date, lst):
 	#base case here
 	if len(lst) == 1:
@@ -140,8 +141,25 @@ def dateSearch(date, lst):
 	else:
 		return lst[mid]
 
+#we must implement a way to enforce sorted vs unsorted lists
+
+#takes a date string in "mm/dd/yyyy" format and a sorted mlRow list as arguments
+#returns a list of the indexes of all entries on that date
+def dateSearchAll(date, sortedlist):
+	#try:
+	#	date = datetime.datetime.strptime(date, "%m/%d/%Y")		#I don't like all these datetime calls
+
+	#get the index from the object returned by dateSearch()
+	#index = sortedlist.index(dateSearch(date, sortedlist))
+	workinglist = []
+	#i = index
+	#while(sortedlist[].date == 
+
 #provide mlRows list as an argument and write it out to a new excel file specified by string newFileName
 def exportToNewWorkbook(header, mlWkbkClassList, newFileName):
+	for elem in mlWkbkClassList:
+		elem.date = datetime.datetime.strftime(elem.date, "%m/%d/%Y")   #restore date to original text format
+
 	#we use the generateArray() function so that we can double iterate
 	#with for loops and easily assign the cells in the new sheet
 	mlWkbkClassList.insert(0, header)
