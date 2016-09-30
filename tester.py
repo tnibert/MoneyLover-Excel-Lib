@@ -8,22 +8,33 @@ lsClass, hdr = loadMLWorkbook("sample.xlsx")
 #	x.display()
 lsList = generateArray(lsClass)
 #print lsList
-sortedClassList = sortByCategory(lsClass)
-#sortedClassList = sortByDate(lsClass)
-test = 0
-for x in sortedClassList:
-	test += 1
-separatedcats = spliceByCategory(lsClass)
-totalelements = 0
-for x in separatedcats:
-	if len(x) == 0:
-		print "EMPTY"
-	else: 
-		totalelements += len(x)
-		print x[0].category + " " + str(len(x))
 
-print "\n----\n" + str(totalelements)
-print "test: " + str(test)
+test = spliceDateRange("07/05/2016", "07/12/2016", lsClass)
+
+#sortedClassList = sortByCategory(lsClass)
+#sortedClassList = sortByDate(lsClass)
+
+#test = 0
+#for x in sortedClassList:
+#	test += 1
+#separatedcats = spliceByCategory(lsClass)
+#totalelements = 0
+#for x in separatedcats:
+#	if len(x) == 0:
+#		print "EMPTY"
+#	else: 
+#		amount = 0
+#		totalelements += len(x)
+#		print x[0].category + " " + str(len(x))
+#		for y in x:
+#			amount += y.amount
+#		print "amount: " + str(amount)
+
+#for x in separatedcats[2]:
+#	x.display()
+
+#print "\n----\n" + str(totalelements)
+#print "test: " + str(test)
 #for x in separatedcats[6]:
 #	x.display()
 #for x in separatedcats:

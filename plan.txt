@@ -11,6 +11,8 @@
 
 - add categories together
 
+- implement error handling
+
 extra)
 add and remove entries
 

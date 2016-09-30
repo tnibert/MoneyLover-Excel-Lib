@@ -86,20 +86,6 @@ def spliceByCategory(workbklist):
 	toreturn = []
 	i = 0
 	while(i < len(catsortedlist)-1):
-#		if(i != (len(catsortedlist)-1) and catsortedlist[i].category == catsortedlist[i+1].category):
-#			workinglist.append(catsortedlist[i])	#add elem to workinglist
-#		elif(i == len(catsortedlist)-1):		#but what happens if we only have one thing in the spreadsheet?
-#			if(catsortedlist[i].category == catsortedlist[i-1].category):
-#				workinglist.append(catsortedlist[i])
-#			else:
-#				#toreturn.append(workinglist)		#I believe this line is detrimental and unnecessary
-#				workinglist = []
-#				workinglist.append(catsortedlist[i])
-#				
-#			toreturn.append(workinglist)
-#		elif(len(workinglist) != 0):
-#			toreturn.append(workinglist)	#add full workinglist to the array to be returned
-#			workinglist = []		#reset the workinglist 
 		if(catsortedlist[i].category == catsortedlist[i+1].category):
 			workinglist.append(catsortedlist[i+1])
 		else:
@@ -111,9 +97,54 @@ def spliceByCategory(workbklist):
 	toreturn.append(workinglist)
 	return toreturn
 
+#takes three arguments, the first two are date strings in mm/dd/yyyy format, the third is the list to splice from
+#returns the spliced list, returns original list if unable to splice
+def spliceDateRange(startdate, enddate, workbklist):
+#what if there is no transactions on one of the start or end dates?
+#we must find all dates WITHIN THE RANGE
+	try:
+		dtstartdate = datetime.datetime.strptime(startdate, "%m/%d/%Y")
+		dtenddate = datetime.datetime.strptime(enddate, "%m/%d/%Y")
+	except:
+		print "incorrect date format passed"
+		return workbklist	#return original list
 
-def spliceDateRange(startdate, enddate):
+	datesortedlist = sortByDate(workbklist)
+	for elem in datesortedlist:			#bah
+                elem.date = datetime.datetime.strptime(elem.date, "%m/%d/%Y")   #turn into datetime obj
+
+	#find first instance of startdate using binary search
+	#startindex=len(datesortedlist)/2
+	#while(datesortedlist[startindex].date != dtstartdate):
+	#	print datesortedlist[startindex].date
+	#	if(dtstartdate < datesortedlist[startindex].date):
+	#		startindex = startindex/2
+	#		print "down " + str(startindex)
+	#	elif(dtstartdate > datesortedlist[startindex].date):
+	#		startindex = startindex+(startindex/2)
+	#		print "up " + str(startindex)
+	index = datesortedlist.index(dateSearch(dtstartdate, datesortedlist))
+	print index
+
+	print datesortedlist[index].date
 	return 0
+
+#recursive function for binary search
+#and the challenge is to return an index for the original list
+#right now it returns the object, we might be able to use it with 
+def dateSearch(date, lst):
+	#base case here
+	if len(lst) == 1:
+		return lst[0]
+
+	mid = len(lst)/2
+	print "length: " + str(len(lst)) + " mid: " + str(mid)
+	if lst[mid].date > date:
+		return dateSearch(date, lst[:mid])
+	elif lst[mid].date < date:
+		return dateSearch(date, lst[mid+1:])
+	else:
+		return lst[mid]
 
 #provide mlRows list as an argument and write it out to a new excel file specified by string newFileName
 def exportToNewWorkbook(header, mlWkbkClassList, newFileName):
