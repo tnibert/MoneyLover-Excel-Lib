@@ -97,6 +97,7 @@ def spliceByCategory(workbklist):
 	toreturn.append(workinglist)
 	return toreturn
 
+#CURRENT WORKING PLACE
 #takes three arguments, the first two are date strings in mm/dd/yyyy format, the third is the list to splice from
 #returns the spliced list, returns original list if unable to splice
 def spliceDateRange(startdate, enddate, workbklist):
@@ -112,17 +113,8 @@ def spliceDateRange(startdate, enddate, workbklist):
 	datesortedlist = sortByDate(workbklist)
 	for elem in datesortedlist:			#bah
                 elem.date = datetime.datetime.strptime(elem.date, "%m/%d/%Y")   #turn into datetime obj
-
-	#find first instance of startdate using binary search
-	#startindex=len(datesortedlist)/2
-	#while(datesortedlist[startindex].date != dtstartdate):
-	#	print datesortedlist[startindex].date
-	#	if(dtstartdate < datesortedlist[startindex].date):
-	#		startindex = startindex/2
-	#		print "down " + str(startindex)
-	#	elif(dtstartdate > datesortedlist[startindex].date):
-	#		startindex = startindex+(startindex/2)
-	#		print "up " + str(startindex)
+	
+	#this next line is how we get the index from the object returned by dateSearch()
 	index = datesortedlist.index(dateSearch(dtstartdate, datesortedlist))
 	print index
 
@@ -130,15 +122,17 @@ def spliceDateRange(startdate, enddate, workbklist):
 	return 0
 
 #recursive function for binary search
-#and the challenge is to return an index for the original list
-#right now it returns the object, we might be able to use it with 
+#returns object of first instance found of given date
+#takes a datetime object and an mlRow class list as arguments
+#could be made better by returning a list of all instances
+#but how to do without breaking recursion
 def dateSearch(date, lst):
 	#base case here
 	if len(lst) == 1:
 		return lst[0]
 
 	mid = len(lst)/2
-	print "length: " + str(len(lst)) + " mid: " + str(mid)
+	#print "length: " + str(len(lst)) + " mid: " + str(mid)
 	if lst[mid].date > date:
 		return dateSearch(date, lst[:mid])
 	elif lst[mid].date < date:

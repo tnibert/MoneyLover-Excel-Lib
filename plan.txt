@@ -1,6 +1,6 @@
 - splice
 	- by category - done
-	- return date splice
+	- return date splice - current working area
 	- return a list of one particular category
 
 - sort by date - done
