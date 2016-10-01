@@ -9,13 +9,15 @@ lsClass, hdr = loadMLWorkbook("category.xlsx")
 lsList = generateArray(lsClass)
 #print lsList
 
-#test = spliceDateRange("07/05/2016", "07/12/2016", lsClass)
+test = spliceDateRange("07/05/2016", "07/12/2016", lsClass)
+#for x in test:
+#	x.display()
 
 #sortedClassList = sortByCategory(lsClass)
-sortedClassList = sortByDate(lsClass)
-indexlist = dateSearchAll("7/05/2016", sortedClassList)
-for i in indexlist:
-	sortedClassList[i].display()
+#sortedClassList = sortByDate(lsClass)
+#indexlist = dateSearchAll("7/05/2016", sortedClassList)
+#for i in indexlist:
+#	sortedClassList[i].display()
 #test = 0
 #for x in sortedClassList:
 #	test += 1
@@ -46,5 +48,5 @@ for i in indexlist:
 
 #for x in sortedClassList:
 #       x.display()
-#exportToNewWorkbook(hdr, sortedClassList, "datetest.xlsx")
+exportToNewWorkbook(hdr, test, "datesplice.xlsx")
 #calc.addByCategory()

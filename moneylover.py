@@ -101,27 +101,38 @@ def spliceByCategory(workbklist):
 
 #CURRENT WORKING PLACE
 #takes three arguments, the first two are date strings in mm/dd/yyyy format, the third is the list to splice from
-#returns the spliced list, returns original list if unable to splice
+#returns the spliced list sorted by date, returns original list if unable to splice
 def spliceDateRange(startdate, enddate, workbklist):
 #what if there is no transactions on one of the start or end dates?
 #we must find all dates WITHIN THE RANGE
+#we must verify that startdate is before enddate
 	try:
 		dtstartdate = datetime.datetime.strptime(startdate, "%m/%d/%Y")
 		dtenddate = datetime.datetime.strptime(enddate, "%m/%d/%Y")
 	except:
 		print "incorrect date format passed"
 		return workbklist	#return original list
-
-	datesortedlist = sortByDate(workbklist)
-	for elem in datesortedlist:			#bah
-                elem.date = datetime.datetime.strptime(elem.date, "%m/%d/%Y")   #turn into datetime obj
 	
-	#this next line is how we get the index from the object returned by dateSearch()
-	index = datesortedlist.index(dateSearch(dtstartdate, datesortedlist))
-	print index
+	#there may be a chance that one of the next three statements is removing a row or two
+	#correct entries are returned but the indexes might be wrong...
+	datesortedlist = sortByDate(workbklist)		#sort the list by date
+	
+	startindexes = dateSearchAll(startdate, datesortedlist)
+	endindexes = dateSearchAll(enddate, datesortedlist)
+#	for x in startindexes:
+#		datesortedlist[x].display()
+#	for x in endindexes:
+#		datesortedlist[x].display()
 
-	print datesortedlist[index].date
-	return 0
+	begin = startindexes[0]
+	end = endindexes[-1]
+#	print endindexes
+#	print endindexes[-1]
+	workinglist = []
+	for i in range(begin, end+1):
+		workinglist.append(datesortedlist[i])
+
+	return workinglist
 
 #recursive function for binary search
 #returns object of first instance found of given date

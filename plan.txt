@@ -1,6 +1,8 @@
 - splice
 	- by category - done
-	- return date splice - current working area
+	- return date splice - done, just needs polishing
+		- must implement a way to enforce sorted vs unsorted lists being passed as arguments
+			perhaps a checksorted() type function
 	- return a list of one particular category
 
 - sort by date - done
