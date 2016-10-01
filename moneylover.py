@@ -146,14 +146,30 @@ def dateSearch(date, lst):
 #takes a date string in "mm/dd/yyyy" format and a sorted mlRow list as arguments
 #returns a list of the indexes of all entries on that date
 def dateSearchAll(date, sortedlist):
-	#try:
-	#	date = datetime.datetime.strptime(date, "%m/%d/%Y")		#I don't like all these datetime calls
+	try:
+		date = datetime.datetime.strptime(date, "%m/%d/%Y")		#convert date to a datetime object
+	except:
+		print "invalid format"
+		return 0
 
 	#get the index from the object returned by dateSearch()
-	#index = sortedlist.index(dateSearch(date, sortedlist))
+	index = sortedlist.index(dateSearch(date, sortedlist))
 	workinglist = []
-	#i = index
-	#while(sortedlist[].date == 
+	i = index
+	
+	#verify that both loops work
+	
+	#scan list forward
+	while(sortedlist[index].date == sortedlist[i].date):
+		workinglist.append(i)
+		i+=1
+	#scan list backward
+	i = index-1
+	while(sortedlist[index].date == sortedlist[i].date):
+		workinglist.append(i)
+		i-=1
+	workinglist.sort()
+	return workinglist
 
 #provide mlRows list as an argument and write it out to a new excel file specified by string newFileName
 def exportToNewWorkbook(header, mlWkbkClassList, newFileName):
@@ -175,4 +191,3 @@ def exportToNewWorkbook(header, mlWkbkClassList, newFileName):
 		i+=1
 
 	newWorkbook.save(newFileName)
-

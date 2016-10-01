@@ -2,18 +2,20 @@ from moneylover import *
 #import calculations as calc
 
 #sortByCategory("test.xlsx")
-lsClass, hdr = loadMLWorkbook("sample.xlsx")
+lsClass, hdr = loadMLWorkbook("category.xlsx")
 #hdr.display()
 #for x in lsClass:
 #	x.display()
 lsList = generateArray(lsClass)
 #print lsList
 
-test = spliceDateRange("07/05/2016", "07/12/2016", lsClass)
+#test = spliceDateRange("07/05/2016", "07/12/2016", lsClass)
 
 #sortedClassList = sortByCategory(lsClass)
-#sortedClassList = sortByDate(lsClass)
-
+sortedClassList = sortByDate(lsClass)
+indexlist = dateSearchAll("7/05/2016", sortedClassList)
+for i in indexlist:
+	sortedClassList[i].display()
 #test = 0
 #for x in sortedClassList:
 #	test += 1
@@ -44,5 +46,5 @@ test = spliceDateRange("07/05/2016", "07/12/2016", lsClass)
 
 #for x in sortedClassList:
 #       x.display()
-#exportToNewWorkbook(hdr, sortedClassList, "datesorted.xlsx")
+#exportToNewWorkbook(hdr, sortedClassList, "datetest.xlsx")
 #calc.addByCategory()
