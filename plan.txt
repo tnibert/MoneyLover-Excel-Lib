@@ -21,6 +21,8 @@
 
 - create __init__.py to make package
 
+- implement data graphing
+
 extra)
 add and remove entries
 

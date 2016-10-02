@@ -1,0 +1,18 @@
+There are two functions for loading and saving files.  They are defined as follows:
+
+
+def loadMLWorkbook(workbkfname)
+
+workbkfname is a string for the file name you want to open.  The function returns 
+a list of mlRow objects and the sheet header, which is an mlRow object where each
+element is the strings of the header row.  Call it like so:
+
+	mlRowList, header = loadMLWorkbook("filename.xlsx")
+
+
+def exportToNewWorkbook(header, mlWkbkClassList, newFileName)
+
+header is the header row mlRow object returned by loadMLWorkbook() earlier.
+mlWkbkClassList is the mlRow list that you want to serialize.  newFileName is a 
+string for the name of the file you want to save to.  This function does not return
+a value.
