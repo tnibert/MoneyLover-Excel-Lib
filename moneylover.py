@@ -36,11 +36,12 @@ def loadMLWorkbook(workbkfname):
 	rowClassList = []
 	header = mlRow(tuple(originalSheet.rows)[0])		#figure out how to keep green color for header
 
-	for line in range(1, originalSheet.max_row):		#start at 1, line 0 is category names
+	for line in range(1, originalSheet.max_row):		#start at 1, line 0 is category names (header)
 		#print tuple(originalSheet.rows)[1]
 		rowClassList.append(mlRow(tuple(originalSheet.rows)[line]))
 
 	#convert all dates to datetime objects
+	#we may want to put this in the mlRow constructor
 	for elem in rowClassList:
                 elem.date = datetime.datetime.strptime(elem.date, "%m/%d/%Y")
 
@@ -148,7 +149,9 @@ def dateSearch(date, lst):
 	if lst[mid].date > date:
 		return dateSearch(date, lst[:mid])
 	elif lst[mid].date < date:
-		return dateSearch(date, lst[mid+1:])
+		return dateSearch(date, lst[mid:])	#originally mid+1, 
+							#apparently changing it allows us to search outside bounds of list 
+							#and return closest item
 	else:
 		return lst[mid]
 
@@ -171,12 +174,12 @@ def dateSearchAll(date, sortedlist):
 	#verify that both loops work
 	
 	#scan list forward
-	while(sortedlist[index].date == sortedlist[i].date):
+	while(i < len(sortedlist) and sortedlist[index].date == sortedlist[i].date):
 		workinglist.append(i)
 		i+=1
 	#scan list backward
 	i = index-1
-	while(sortedlist[index].date == sortedlist[i].date):
+	while(i >= 0 and sortedlist[index].date == sortedlist[i].date):
 		workinglist.append(i)
 		i-=1
 	workinglist.sort()
