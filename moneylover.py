@@ -16,15 +16,14 @@ class mlRow():
 		self.currency = wbRow[5].value
 		self.date = wbRow[6].value
 	def display(self):
-		print self.id
-		print self.category
-		print self.amount
-		print self.note
-		print self.wallet
-		print self.currency
-		print self.date
-
-		print "\n"
+		print "ID: " + str(self.id)
+		print "Category: " + str(self.category)
+		print "Amount: $" + str(self.amount)
+		print "Note: " + str(self.note)
+		print "Wallet: " + str(self.wallet)
+		print "Currency: " + str(self.currency)
+		print "Date: " + str(self.date)
+		print ""
 
 #take a file name as argument and return tuple containing previously mentioned list of mlRow classes and header
 def loadMLWorkbook(workbkfname):

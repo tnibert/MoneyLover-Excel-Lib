@@ -8,7 +8,7 @@ except:
 	exit()
 
 
-lsClass, hdr = loadMLWorkbook("category.xlsx")
+lsClass, hdr = loadMLWorkbook(fname)
 
 separatedcats = spliceByCategory(lsClass)
 for x in separatedcats:
