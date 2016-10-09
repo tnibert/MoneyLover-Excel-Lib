@@ -11,6 +11,8 @@
 
 - sort by type - done
 
+- merging of two spreadsheets
+
 - unicode xls conversion
 
 - sort by date within type

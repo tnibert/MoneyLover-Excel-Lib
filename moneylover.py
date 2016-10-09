@@ -102,16 +102,17 @@ def spliceByCategory(workbklist):
 #CURRENT WORKING PLACE
 #takes three arguments, the first two are date strings in mm/dd/yyyy format, the third is the list to splice from
 #returns the spliced list sorted by date, returns original list if unable to splice
+#returns -1 on error
 def spliceDateRange(startdate, enddate, workbklist):
-#what if there is no transactions on one of the start or end dates?
-#we must find all dates WITHIN THE RANGE
-#we must verify that startdate is before enddate
 	try:
 		dtstartdate = datetime.datetime.strptime(startdate, "%m/%d/%Y")
 		dtenddate = datetime.datetime.strptime(enddate, "%m/%d/%Y")
 	except:
 		print "incorrect date format passed"
 		return workbklist	#return original list
+
+	if(dtstartdate > dtenddate):	#if startdate is after enddate
+		return -1		#return -1 for error
 	
 	#there may be a chance that one of the next three statements is removing a row or two
 	#correct entries are returned but the indexes might be wrong...
