@@ -1,0 +1,31 @@
+Internally, dates are represented as datetime objects for easier manipulation.
+The function interfaces, however, deal with strings in mm/dd/yyyy format.
+
+The functions to work with dates are as follows:
+
+spliceDateRange(startdate, enddate, workbklist)
+
+This function returns a list of mlRow objects sorted by date and ranging from
+startdate to enddate, taken from workbklist.  startdate and enddate are date
+strings in mm/dd/yyyy format.  workbklist is a list of mlRow objects.  The 
+bounding dates need not be within the date range of the list.  Upon error, the
+function returns -1.
+
+sortByDate(workbklist)
+
+This function takes an mlRow list as an argument and returns the list sorted
+by date.
+
+dateSearchAll(date, sortedlist)
+
+This function takes arguments of a date string in format mm/dd/yyyy and a date
+sorted list.  It returns all instances of the given date in the list in a list
+format.  It returns -1 upon error.
+
+dateSearch(date, sortedlist)
+
+This function takes an argument of a datetime object date and a date sorted 
+list sortedlist.  It does a binary search of sortedlist and returns the first
+instance of date found in the list.  It is designed to be an internal function
+and its use is highly discouraged.  dateSearchAll() is recommended to be used.
+

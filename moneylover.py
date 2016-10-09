@@ -99,17 +99,15 @@ def spliceByCategory(workbklist):
 	toreturn.append(workinglist)
 	return toreturn
 
-#CURRENT WORKING PLACE
 #takes three arguments, the first two are date strings in mm/dd/yyyy format, the third is the list to splice from
-#returns the spliced list sorted by date, returns original list if unable to splice
-#returns -1 on error
+#returns the spliced list sorted by date, returns -1 if unable to splice
 def spliceDateRange(startdate, enddate, workbklist):
 	try:
 		dtstartdate = datetime.datetime.strptime(startdate, "%m/%d/%Y")
 		dtenddate = datetime.datetime.strptime(enddate, "%m/%d/%Y")
 	except:
 		print "incorrect date format passed"
-		return workbklist	#return original list
+		return -1
 
 	if(dtstartdate > dtenddate):	#if startdate is after enddate
 		return -1		#return -1 for error
@@ -164,7 +162,7 @@ def dateSearchAll(date, sortedlist):
 		date = datetime.datetime.strptime(date, "%m/%d/%Y")		#convert date to a datetime object
 	except:
 		print "invalid format"
-		return 0
+		return -1
 
 	#get the index from the object returned by dateSearch()
 	index = sortedlist.index(dateSearch(date, sortedlist))

@@ -4,7 +4,7 @@
 		- must implement a way to enforce sorted vs unsorted lists being passed as arguments
 			perhaps a checksorted() type function
 		- implement splicing a date that isn't there - done
-		- verify that startdate is prior to enddate
+		- verify that startdate is prior to enddate - done
 	- return a list of one particular category
 
 - sort by date - done
@@ -12,6 +12,9 @@
 - sort by type - done
 
 - merging of two spreadsheets
+
+- create a format string variable for date format to easily globally change
+	between US and Australia date formats in program
 
 - unicode xls conversion
 

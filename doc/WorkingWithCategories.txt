@@ -1,0 +1,11 @@
+Functions to work with categories are as follows:
+
+sortByCategory(workbklist)
+
+This function takes an mlRow list as an argument, sorts it alphabetically
+by category, and returns the sorted list.
+
+spliceByCategory(workbklist)
+
+This function takes an mlRow list as an argument and returns a list of uniform
+category lists.
