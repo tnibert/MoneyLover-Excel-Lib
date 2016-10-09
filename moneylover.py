@@ -15,6 +15,7 @@ class mlRow():
 		self.wallet = wbRow[4].value
 		self.currency = wbRow[5].value
 		self.date = wbRow[6].value
+
 	def display(self):
 		print "ID: " + str(self.id)
 		print "Category: " + str(self.category)
@@ -24,6 +25,19 @@ class mlRow():
 		print "Currency: " + str(self.currency)
 		print "Date: " + str(self.date)
 		print ""
+
+	#returns true is self and row contain the same data
+	def compare(self, row):
+		if(self.id == row.id and
+			self.category == row.category and
+			self.amount == row.amount and
+			self.note == row.note and
+			self.wallet == row.wallet and
+			self.currency == row.currency and
+			self.date == row.date):
+			return True
+		else:
+			return False
 
 #take a file name as argument and return tuple containing previously mentioned list of mlRow classes and header
 def loadMLWorkbook(workbkfname):
