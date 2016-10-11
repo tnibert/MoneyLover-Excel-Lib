@@ -5,6 +5,7 @@
 			perhaps a checksorted() type function
 		- implement splicing a date that isn't there - done
 		- verify that startdate is prior to enddate - done
+		- BUG: spliceByDate() has problems with small data sets and erroring when an object is not there
 	- return a list of one particular category
 
 - sort by date - done
@@ -12,6 +13,11 @@
 - sort by type - done
 
 - merging of two spreadsheets
+	- check if duplicates
+		- make compare method
+	- assign new ids
+	- add items to the end of list
+	- sort by date
 
 - create a format string variable for date format to easily globally change
 	between US and Australia date formats in program
