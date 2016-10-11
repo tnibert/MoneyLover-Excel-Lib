@@ -19,8 +19,8 @@ by date.
 dateSearchAll(date, sortedlist)
 
 This function takes arguments of a date string in format mm/dd/yyyy and a date
-sorted list.  It returns all instances of the given date in the list in a list
-format.  It returns -1 upon error.
+sorted list.  It returns the indexes of all instances of the given date in the 
+list in a list format.  It returns -1 upon error.
 
 dateSearch(date, sortedlist)
 
