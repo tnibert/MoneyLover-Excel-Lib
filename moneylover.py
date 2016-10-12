@@ -130,6 +130,11 @@ def spliceDateRange(startdate, enddate, workbklist):
 	#correct entries are returned but the indexes might be wrong...
 	datesortedlist = sortByDate(workbklist)		#sort the list by date
 	
+	#if we are only looking for one date
+	#TEST THIS
+	if(startdate == enddate):
+		return dateSearchAll(startdate, datesortedlist)
+
 	startindexes = dateSearchAll(startdate, datesortedlist)
 	endindexes = dateSearchAll(enddate, datesortedlist)
 #	for x in startindexes:
@@ -148,24 +153,23 @@ def spliceDateRange(startdate, enddate, workbklist):
 	return workinglist
 
 #recursive function for binary search
-#returns object of first instance found of given date
+#returns object of last instance found of given date or -1 if not found
 #takes a datetime object and a sorted mlRow class list as arguments
 #for internal library use, reference directly from your code at your own peril
 def dateSearch(date, lst):
 	#base case here
 	if len(lst) == 1:
+		if(lst[0].date != date): return -1
 		return lst[0]
 
 	mid = len(lst)/2
-	#print "length: " + str(len(lst)) + " mid: " + str(mid)
-	if lst[mid].date > date:
+	print "length: " + str(len(lst)) + " mid: " + str(mid)
+	if lst[mid].date <= date:
+		return dateSearch(date, lst[mid:])
+	elif lst[mid].date > date:
 		return dateSearch(date, lst[:mid])
-	elif lst[mid].date < date:
-		return dateSearch(date, lst[mid:])	#originally mid+1, 
-							#apparently changing it allows us to search outside bounds of list 
-							#and return closest item
-	else:
-		return lst[mid]
+
+#def dateSearchClosest():
 
 #we must implement a way to enforce sorted vs unsorted lists
 
@@ -179,7 +183,13 @@ def dateSearchAll(date, sortedlist):
 		return -1
 
 	#get the index from the object returned by dateSearch()
-	index = sortedlist.index(dateSearch(date, sortedlist))
+	obj = dateSearch(date, sortedlist)
+	#print "IN DATESEARCHALL()"
+	#print date
+	#obj.display()
+	if(obj == -1):
+		return -1
+	index = sortedlist.index(obj)
 	workinglist = []
 	i = index
 	

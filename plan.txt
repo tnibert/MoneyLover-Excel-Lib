@@ -6,7 +6,14 @@
 		- implement splicing a date that isn't there - done
 		- verify that startdate is prior to enddate - done
 		- BUG: spliceByDate() has problems with small data sets and erroring when an object is not there
+			- fixed dateSearch(), must update dateSearchAll and spliceByDate()
+			- must implement dateSearchClosest()
 	- return a list of one particular category
+
+- implement type checking
+- implement checking for datetime object in dateSearch()
+
+- implement a wrapper function to convert date strings to datetime object
 
 - sort by date - done
 
@@ -36,6 +43,16 @@
 
 extra)
 add and remove entries
+
+-------
+Plan of attack:
+
+Right now dateSearch() is messed up.  After we fix this, we'll make a release.
+
+Then
+Every new feature implemented gets its own branch
+Every new feature gets a specific test case written for it
+Upon passing test, merge to master
 
 -------
 organization:
