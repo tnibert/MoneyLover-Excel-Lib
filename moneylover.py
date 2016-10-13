@@ -163,7 +163,7 @@ def dateSearch(date, lst):
 		return lst[0]
 
 	mid = len(lst)/2
-	print "length: " + str(len(lst)) + " mid: " + str(mid)
+	#print "length: " + str(len(lst)) + " mid: " + str(mid)
 	if lst[mid].date <= date:
 		return dateSearch(date, lst[mid:])
 	elif lst[mid].date > date:
@@ -196,14 +196,18 @@ def dateSearchAll(date, sortedlist):
 	#verify that both loops work
 	
 	#scan list forward
+	#this bit might be unnecessary or inefficient and modifiable, more investigation needed
+		#seems to go through first loop one time at beginning
 	while(i < len(sortedlist) and sortedlist[index].date == sortedlist[i].date):
 		workinglist.append(i)
 		i+=1
+		#print "TESTING"
 	#scan list backward
 	i = index-1
 	while(i >= 0 and sortedlist[index].date == sortedlist[i].date):
 		workinglist.append(i)
 		i-=1
+		#print "TESTING2"
 	workinglist.sort()
 	return workinglist
 

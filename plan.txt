@@ -6,7 +6,7 @@
 		- implement splicing a date that isn't there - done
 		- verify that startdate is prior to enddate - done
 		- BUG: spliceByDate() has problems with small data sets and erroring when an object is not there
-			- fixed dateSearch(), must update dateSearchAll and spliceByDate()
+			- fixed dateSearch(), dateSearchAll.  Must update spliceByDate()
 			- must implement dateSearchClosest()
 	- return a list of one particular category
 
