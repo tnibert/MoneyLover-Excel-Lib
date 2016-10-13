@@ -129,11 +129,17 @@ def spliceDateRange(startdate, enddate, workbklist):
 	#there may be a chance that one of the next three statements is removing a row or two
 	#correct entries are returned but the indexes might be wrong...
 	datesortedlist = sortByDate(workbklist)		#sort the list by date
-	
+
 	#if we are only looking for one date
-	#TEST THIS
+	#TEST THIS, CORRECT
 	if(startdate == enddate):
-		return dateSearchAll(startdate, datesortedlist)
+		return dateSearchAll(startdate, datesortedlist)		#this is problematic, returning indexes
+
+	#check if start and end dates are in the list, if not find the closest date in list within the range and go with that
+	#if startdate not in datesortedlist:
+		#startdate = dateSearchClosest(startdate, up)
+	#if enddate not in datesortedlist:
+		#enddate = dateSearchClosest(enddate, down)
 
 	startindexes = dateSearchAll(startdate, datesortedlist)
 	endindexes = dateSearchAll(enddate, datesortedlist)
@@ -152,6 +158,19 @@ def spliceDateRange(startdate, enddate, workbklist):
 
 	return workinglist
 
+def convertStrToDatetime(str):
+	return datetime.datetime.strptime(str, "%m/%d/%Y")
+
+def convertDatetimeToStr(dt):
+	return datetime.datetime.strftime(dt, "%m/%d/%Y")
+
+#date is date string
+#directionstep is a positive or negative int
+#returns next closest date in direction
+def dateSearchClosest(date, directionstep, workbklist):
+	#while(
+	return
+
 #recursive function for binary search
 #returns object of last instance found of given date or -1 if not found
 #takes a datetime object and a sorted mlRow class list as arguments
@@ -168,8 +187,6 @@ def dateSearch(date, lst):
 		return dateSearch(date, lst[mid:])
 	elif lst[mid].date > date:
 		return dateSearch(date, lst[:mid])
-
-#def dateSearchClosest():
 
 #we must implement a way to enforce sorted vs unsorted lists
 
