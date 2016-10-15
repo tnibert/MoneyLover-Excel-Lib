@@ -115,6 +115,7 @@ def spliceByCategory(workbklist):
 
 #takes three arguments, the first two are date strings in mm/dd/yyyy format, the third is the list to splice from
 #returns the spliced list sorted by date, returns -1 if unable to splice
+#returns empty list if no items in range
 def spliceDateRange(startdate, enddate, workbklist):
 	try:
 		dtstartdate = datetime.datetime.strptime(startdate, "%m/%d/%Y")
@@ -134,7 +135,6 @@ def spliceDateRange(startdate, enddate, workbklist):
 	datesortedlist = sortByDate(workbklist)		#sort the list by date
 
 	#if we are only looking for one date
-	#TEST THIS, CORRECT
 	if(dtstartdate == dtenddate):
 		retIndexes = dateSearchAll(startdate, datesortedlist)
 		if(retIndexes == -1): return -1					#if it's not in the list
@@ -146,6 +146,8 @@ def spliceDateRange(startdate, enddate, workbklist):
 		dtstartdate = dateSearchClosest(dtstartdate, 1, datesortedlist)
 	if (dateSearch(dtenddate, datesortedlist) == -1):
 		dtenddate = dateSearchClosest(dtenddate, -1, datesortedlist)
+
+	if(dtenddate == -1 or dtstartdate == -1): return workinglist	#if nothing in bounds, return empty list
 
 	startindexes = dateSearchAll(dtstartdate, datesortedlist)
 	endindexes = dateSearchAll(dtenddate, datesortedlist)

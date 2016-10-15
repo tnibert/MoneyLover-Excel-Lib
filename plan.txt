@@ -1,3 +1,11 @@
+15 October 2016 - CLEAN UP AND PREP FOR A RELEASE
+- verify checks, make sure all date functions can take a string or datetime object (except maybe datesearch)
+- clean up sample scripts
+- update documentation, especially date page
+- create release features document
+
+-----------------
+
 - splice
 	- by category - done
 	- return date splice - done
@@ -13,7 +21,7 @@
 - implement type checking - in progress
 - implement checking for datetime object in dateSearch()
 
-- implement a wrapper function to convert date strings to datetime object
+- implement a wrapper function to convert date strings to datetime object - done
 
 - sort by date - done
 
@@ -34,8 +42,9 @@
 - sort by date within type
 
 - add categories together (eg put subcategories into their parents)
+	- possibly use a tree
 
-- implement error handling
+- implement error handling - in progress
 
 - create __init__.py to make package
 
