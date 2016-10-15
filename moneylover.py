@@ -164,12 +164,27 @@ def convertStrToDatetime(str):
 def convertDatetimeToStr(dt):
 	return datetime.datetime.strftime(dt, "%m/%d/%Y")
 
+#MUST IMPLEMENT CHECKS THAT LISTS PASSED HAVE ENTRIES
+
 #date is date string
 #directionstep is a positive or negative int
+#workbklist is a date sorted list
 #returns next closest date in direction
 def dateSearchClosest(date, directionstep, workbklist):
-	#while(
-	return
+	date = convertStrToDatetime(date)
+
+	#check for bounds
+	if(directionstep == 0):
+		print "direction step must not be 0!"
+		return -2
+	elif(date < workbklist[0].date and directionstep < 0):
+		return -1
+	elif(date > workbklist[len(workbklist)-1].date and directionstep > 0):
+		return -1
+
+	while(dateSearch(date, workbklist) == -1):
+		date += datetime.timedelta(days=directionstep)	#to increment or decrement date 
+	return date
 
 #recursive function for binary search
 #returns object of last instance found of given date or -1 if not found

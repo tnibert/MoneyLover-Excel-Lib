@@ -7,7 +7,7 @@
 		- verify that startdate is prior to enddate - done
 		- BUG: spliceByDate() has problems with small data sets and erroring when an object is not there
 			- fixed dateSearch(), dateSearchAll.  Must update spliceByDate()
-			- must implement dateSearchClosest()
+			- must implement dateSearchClosest() - done
 	- return a list of one particular category
 
 - implement type checking
