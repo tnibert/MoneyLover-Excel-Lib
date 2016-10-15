@@ -6,11 +6,11 @@
 		- implement splicing a date that isn't there - done
 		- verify that startdate is prior to enddate - done
 		- BUG: spliceByDate() has problems with small data sets and erroring when an object is not there
-			- fixed dateSearch(), dateSearchAll.  Must update spliceByDate()
+			- fixed dateSearch(), dateSearchAll.  Must update spliceByDate() - ALL FIXED
 			- must implement dateSearchClosest() - done
 	- return a list of one particular category
 
-- implement type checking
+- implement type checking - in progress
 - implement checking for datetime object in dateSearch()
 
 - implement a wrapper function to convert date strings to datetime object

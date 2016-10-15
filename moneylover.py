@@ -126,23 +126,29 @@ def spliceDateRange(startdate, enddate, workbklist):
 	if(dtstartdate > dtenddate):	#if startdate is after enddate
 		return -1		#return -1 for error
 	
+
+	workinglist = []
+
 	#there may be a chance that one of the next three statements is removing a row or two
 	#correct entries are returned but the indexes might be wrong...
 	datesortedlist = sortByDate(workbklist)		#sort the list by date
 
 	#if we are only looking for one date
 	#TEST THIS, CORRECT
-	if(startdate == enddate):
-		return dateSearchAll(startdate, datesortedlist)		#this is problematic, returning indexes
+	if(dtstartdate == dtenddate):
+		retIndexes = dateSearchAll(startdate, datesortedlist)
+		if(retIndexes == -1): return -1					#if it's not in the list
+		for i in retIndexes: workinglist.append(datesortedlist[i])
+		return workinglist
 
 	#check if start and end dates are in the list, if not find the closest date in list within the range and go with that
-	#if startdate not in datesortedlist:
-		#startdate = dateSearchClosest(startdate, up)
-	#if enddate not in datesortedlist:
-		#enddate = dateSearchClosest(enddate, down)
+	if (dateSearch(dtstartdate, datesortedlist) == -1):
+		dtstartdate = dateSearchClosest(dtstartdate, 1, datesortedlist)
+	if (dateSearch(dtenddate, datesortedlist) == -1):
+		dtenddate = dateSearchClosest(dtenddate, -1, datesortedlist)
 
-	startindexes = dateSearchAll(startdate, datesortedlist)
-	endindexes = dateSearchAll(enddate, datesortedlist)
+	startindexes = dateSearchAll(dtstartdate, datesortedlist)
+	endindexes = dateSearchAll(dtenddate, datesortedlist)
 #	for x in startindexes:
 #		datesortedlist[x].display()
 #	for x in endindexes:
@@ -152,7 +158,6 @@ def spliceDateRange(startdate, enddate, workbklist):
 	end = endindexes[-1]
 #	print endindexes
 #	print endindexes[-1]
-	workinglist = []
 	for i in range(begin, end+1):
 		workinglist.append(datesortedlist[i])
 
@@ -171,7 +176,7 @@ def convertDatetimeToStr(dt):
 #workbklist is a date sorted list
 #returns next closest date in direction
 def dateSearchClosest(date, directionstep, workbklist):
-	date = convertStrToDatetime(date)
+	if(type(date) is str): date = convertStrToDatetime(date)	#CHECK
 
 	#check for bounds
 	if(directionstep == 0):
@@ -209,7 +214,8 @@ def dateSearch(date, lst):
 #returns a list of the indexes of all entries on that date
 def dateSearchAll(date, sortedlist):
 	try:
-		date = datetime.datetime.strptime(date, "%m/%d/%Y")		#convert date to a datetime object
+		if(type(date) is str): date = convertStrToDatetime(date)        #CHECK
+		#date = datetime.datetime.strptime(date, "%m/%d/%Y")		#convert date to a datetime object
 	except:
 		print "invalid format"
 		return -1
@@ -219,13 +225,11 @@ def dateSearchAll(date, sortedlist):
 	#print "IN DATESEARCHALL()"
 	#print date
 	#obj.display()
-	if(obj == -1):
+	if(obj == -1):			#check for if date not in sortedlist
 		return -1
 	index = sortedlist.index(obj)
 	workinglist = []
 	i = index
-	
-	#verify that both loops work
 	
 	#scan list forward
 	#this bit might be unnecessary or inefficient and modifiable, more investigation needed
