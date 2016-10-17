@@ -3,29 +3,21 @@
 - clean up sample scripts
 - update documentation, especially date page
 - create release features document
+- license
 
 -----------------
 
 - splice
-	- by category - done
 	- return date splice - done
-		- must implement a way to enforce sorted vs unsorted lists being passed as arguments
+**		- must implement a way to enforce sorted vs unsorted lists being passed as arguments
 			perhaps a checksorted() type function
-		- implement splicing a date that isn't there - done
-		- verify that startdate is prior to enddate - done
-		- BUG: spliceByDate() has problems with small data sets and erroring when an object is not there
-			- fixed dateSearch(), dateSearchAll.  Must update spliceByDate() - ALL FIXED
-			- must implement dateSearchClosest() - done
 	- return a list of one particular category
 
-- implement type checking - in progress
+**- implement type checking - in progress
+	- test datetime/string type checking
 - implement checking for datetime object in dateSearch()
 
-- implement a wrapper function to convert date strings to datetime object - done
-
-- sort by date - done
-
-- sort by type - done
+-------------
 
 - merging of two spreadsheets
 	- check if duplicates
@@ -38,6 +30,8 @@
 	between US and Australia date formats in program
 
 - unicode xls conversion
+
+- support for csv format
 
 - sort by date within type
 

@@ -118,8 +118,13 @@ def spliceByCategory(workbklist):
 #returns empty list if no items in range
 def spliceDateRange(startdate, enddate, workbklist):
 	try:
-		dtstartdate = datetime.datetime.strptime(startdate, "%m/%d/%Y")
-		dtenddate = datetime.datetime.strptime(enddate, "%m/%d/%Y")
+		#TESTESTESTESTEST
+		if(type(startdate) is str): dtstartdate = convertStrToDatetime(startdate)        #CHECK
+		else: dtstartdate = startdate
+		if(type(enddate) is str): dtenddate = convertStrToDatetime(enddate)        	#CHECK
+		else: dtenddate = enddate
+		#dtstartdate = datetime.datetime.strptime(startdate, "%m/%d/%Y")
+		#dtenddate = datetime.datetime.strptime(enddate, "%m/%d/%Y")
 	except:
 		print "incorrect date format passed"
 		return -1

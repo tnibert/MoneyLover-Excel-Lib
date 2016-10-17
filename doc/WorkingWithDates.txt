@@ -1,28 +1,73 @@
 Internally, dates are represented as datetime objects for easier manipulation.
-The function interfaces, however, deal with strings in mm/dd/yyyy format.
+Many function interfaces deal with both strings in mm/dd/yyyy format and datetime
+objects.
 
 The functions to work with dates are as follows:
 
+convertStrToDatetime(str)
+
+Arguments:
+- str: a date string in mm/dd/yyyy format
+
+Returns a datetime object converted from str.
+
+convertDatetimeToStr(dt)
+
+Arguments:
+- dt: a datetime object
+
+Returns a date string in mm/dd/yyyy format converted from dt.
+
 spliceDateRange(startdate, enddate, workbklist)
 
+Arguments:
+- startdate: mm/dd/yyyy format date string or datetime object
+- enddate: mm/dd/yyyy format date string or datetime object
+- workbklist: list of mlRow objects to splice from
+
 This function returns a list of mlRow objects sorted by date and ranging from
-startdate to enddate, taken from workbklist.  startdate and enddate are date
-strings in mm/dd/yyyy format.  workbklist is a list of mlRow objects.  The 
-bounding dates need not be within the date range of the list.  Upon error, the
-function returns -1.
+startdate to enddate, taken from workbklist.  startdate and enddate can be date
+strings in mm/dd/yyyy format or datetime objects.  workbklist is a list of mlRow 
+objects.  The bounding dates need not be within the date range of the list and the 
+list need not be sorted.  Upon error, the function returns -1.  If there are no 
+entries within the range, an empty list is returned.
 
 sortByDate(workbklist)
+
+Arguments:
+- workbklist: a list of mlRow objects
 
 This function takes an mlRow list as an argument and returns the list sorted
 by date.
 
 dateSearchAll(date, sortedlist)
 
-This function takes arguments of a date string in format mm/dd/yyyy and a date
-sorted list.  It returns the indexes of all instances of the given date in the 
-list in a list format.  It returns -1 upon error.
+Arguments:
+- date: a mm/dd/yyyy format date string or datetime object
+- sortedlist: a date sorted list of mlRow objects
+
+This function takes arguments of a date string in format mm/dd/yyyy or a datetime 
+object and a date sorted list.  It returns the indexes of all instances of the 
+given date in the list in a list format.  It returns -1 upon error.
+
+dateSearchClosest(date, directionstep, workbklist)
+
+Arguments:
+- date: a date string in either mm/dd/yyyy format or datetime object
+- directionstep: a positive or negative integer value specifying direction and step
+	for finding closest value
+- workbklist: a date sorted list of mlRow objects to search from
+
+Returns the closest date in the list to the specified date.  directionstep specifies
+the direction of find the closest date.  Recommended values of 1 and -1.  These would
+search for the closest date 1 day at a time until finding the closest date.  A positive
+value will search future, a negative value will search past.
 
 dateSearch(date, sortedlist)
+
+Arguments:
+- date: a datetime object
+- sortedlist: a date sorted list of mlRow objects
 
 This function takes an argument of a datetime object date and a date sorted 
 list sortedlist.  It does a binary search of sortedlist and returns the first
