@@ -11,12 +11,9 @@ except:
 lsClass, hdr = loadMLWorkbook(fname)
 
 separatedcats = spliceByCategory(lsClass)
-for x in separatedcats:
-	if len(x) == 0:
-		print "EMPTY"
-	else: 
-		amount = 0
-		print x[0].category + " contains " + str(len(x)) + " entries"
-		for y in x:
-			amount += y.amount
-		print "Amount: " + str(amount) + "\n"
+for category in separatedcats:
+	amount = 0
+	print category[0].category + " contains " + str(len(category)) + " entries"
+	for entry in category:
+		amount += entry.amount
+	print "Amount: " + str(amount) + "\n"
