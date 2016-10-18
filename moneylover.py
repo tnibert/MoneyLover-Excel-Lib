@@ -118,10 +118,9 @@ def spliceByCategory(workbklist):
 #returns empty list if no items in range
 def spliceDateRange(startdate, enddate, workbklist):
 	try:
-		#TESTESTESTESTEST
-		if(type(startdate) is str): dtstartdate = convertStrToDatetime(startdate)        #CHECK
+		if(type(startdate) is str): dtstartdate = convertStrToDatetime(startdate)
 		else: dtstartdate = startdate
-		if(type(enddate) is str): dtenddate = convertStrToDatetime(enddate)        	#CHECK
+		if(type(enddate) is str): dtenddate = convertStrToDatetime(enddate)
 		else: dtenddate = enddate
 		#dtstartdate = datetime.datetime.strptime(startdate, "%m/%d/%Y")
 		#dtenddate = datetime.datetime.strptime(enddate, "%m/%d/%Y")
@@ -183,7 +182,7 @@ def convertDatetimeToStr(dt):
 #workbklist is a date sorted list
 #returns next closest date in direction
 def dateSearchClosest(date, directionstep, workbklist):
-	if(type(date) is str): date = convertStrToDatetime(date)	#CHECK
+	if(type(date) is str): date = convertStrToDatetime(date)
 
 	#check for bounds
 	if(directionstep == 0):
@@ -221,7 +220,7 @@ def dateSearch(date, lst):
 #returns a list of the indexes of all entries on that date
 def dateSearchAll(date, sortedlist):
 	try:
-		if(type(date) is str): date = convertStrToDatetime(date)        #CHECK
+		if(type(date) is str): date = convertStrToDatetime(date)
 		#date = datetime.datetime.strptime(date, "%m/%d/%Y")		#convert date to a datetime object
 	except:
 		print "invalid format"

@@ -1,9 +1,9 @@
 15 October 2016 - CLEAN UP AND PREP FOR A RELEASE
-- verify checks, make sure all date functions can take a string or datetime object (except maybe datesearch)
 - clean up sample scripts
 - update documentation, especially date page
 - create release features document
 - license
+- turn into module
 
 -----------------
 
@@ -13,7 +13,7 @@
 			perhaps a checksorted() type function
 	- return a list of one particular category
 
-**- implement type checking - in progress
+- implement type checking - done
 	- test datetime/string type checking
 - implement checking for datetime object in dateSearch()
 
