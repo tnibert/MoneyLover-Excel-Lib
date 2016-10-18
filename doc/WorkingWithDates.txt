@@ -1,6 +1,9 @@
 Internally, dates are represented as datetime objects for easier manipulation.
 Many function interfaces deal with both strings in mm/dd/yyyy format and datetime
-objects.
+objects.  Functions dealing with lists generally require a list that has been
+presorted by date with the exception of spliceDateRange().  The reason for this is
+for efficiency and to keep functions focused on their specific task.  If you're going
+to be working with dates it would be a best practice to call sortByDate() first.
 
 The functions to work with dates are as follows:
 
