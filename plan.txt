@@ -11,6 +11,7 @@
 	- return date splice - done
 **		- must implement a way to enforce sorted vs unsorted lists being passed as arguments
 			perhaps a checksorted() type function
+		- NOT IMPLEMENTING FOR NOW
 	- return a list of one particular category
 
 - implement type checking - done

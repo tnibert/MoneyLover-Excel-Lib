@@ -65,7 +65,6 @@ def loadMLWorkbook(workbkfname):
 #return said double indexed array
 #the purpose for this is that it is easier to work with in some contexts
 #for example, writing out to a new excel file
-#I believe that currently that is the only place this is used... be on look out for problems with datetime object conversions...
 def generateArray(rowClassList):	#takes argument of mlRows class and converts to a conventional array
 	numRows = len(rowClassList)
 	rowArrayList = []		#array is [rows][columns]
@@ -96,6 +95,7 @@ def sortByDate(workbklist):
 
 #splice mlRows list based on criteria, return list of uniform category lists
 def spliceByCategory(workbklist):
+	if len(workbklist) == 0: return []
 	catsortedlist = sortByCategory(workbklist)
 	workinglist = []
 	workinglist.append(catsortedlist[0])		#what if passed empty list?
@@ -117,6 +117,7 @@ def spliceByCategory(workbklist):
 #returns the spliced list sorted by date, returns -1 if unable to splice
 #returns empty list if no items in range
 def spliceDateRange(startdate, enddate, workbklist):
+	if len(workbklist) == 0: return []
 	try:
 		if(type(startdate) is str): dtstartdate = convertStrToDatetime(startdate)
 		else: dtstartdate = startdate
@@ -136,6 +137,7 @@ def spliceDateRange(startdate, enddate, workbklist):
 
 	#there may be a chance that one of the next three statements is removing a row or two
 	#correct entries are returned but the indexes might be wrong...
+	#almost definitely not but keeping comment just in case
 	datesortedlist = sortByDate(workbklist)		#sort the list by date
 
 	#if we are only looking for one date
