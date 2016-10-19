@@ -157,15 +157,15 @@ def spliceDateRange(startdate, enddate, workbklist):
 
 	startindexes = dateSearchAll(dtstartdate, datesortedlist)
 	endindexes = dateSearchAll(dtenddate, datesortedlist)
-#	for x in startindexes:
-#		datesortedlist[x].display()
-#	for x in endindexes:
-#		datesortedlist[x].display()
+	#for x in startindexes:
+	#	datesortedlist[x].display()
+	#for x in endindexes:
+	#	datesortedlist[x].display()
 
 	begin = startindexes[0]
 	end = endindexes[-1]
-#	print endindexes
-#	print endindexes[-1]
+	#print endindexes
+	#print endindexes[-1]
 	for i in range(begin, end+1):
 		workinglist.append(datesortedlist[i])
 

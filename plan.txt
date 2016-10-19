@@ -1,19 +1,12 @@
 15 October 2016 - CLEAN UP AND PREP FOR A RELEASE
-- clean up sample scripts - done
-- update documentation, especially date page - done
-	- maybe format w/ html
-- create release features document
 - license
 - turn into module
-- check diffs between repo and local
 
 -----------------
 
-- must implement a way to enforce sorted vs unsorted lists being passed as arguments
-	perhaps a checksorted() type function
-	- NOT IMPLEMENTING FOR NOW - document
+- check for a sorted list
 
-----------------
+- format documentation nicely
 
 - return a list of one particular category
 
@@ -31,37 +24,16 @@
 
 - support for csv format
 
-- sort by date within type
-
 - add categories together (eg put subcategories into their parents)
 	- possibly use a tree
 
-- implement error handling - in progress
-
-- create __init__.py to make package
-
 - implement data graphing
 
-extra)
-add and remove entries
+- add and remove entries
 
 -------
-Plan of attack:
+Process from 0.5 onward:
 
-Right now dateSearch() is messed up.  After we fix this, we'll make a release.
-
-Then
 Every new feature implemented gets its own branch
 Every new feature gets a specific test case written for it
 Upon passing test, merge to master
-
--------
-organization:
-columns:
-a - id number
-b - category
-c - amount
-d - note
-e - wallet
-f - currency
-g - date
