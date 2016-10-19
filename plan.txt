@@ -1,24 +1,21 @@
 15 October 2016 - CLEAN UP AND PREP FOR A RELEASE
-- clean up sample scripts
-- update documentation, especially date page
+- clean up sample scripts - done
+- update documentation, especially date page - done
+	- maybe format w/ html
 - create release features document
 - license
 - turn into module
+- check diffs between repo and local
 
 -----------------
 
-- splice
-	- return date splice - done
-**		- must implement a way to enforce sorted vs unsorted lists being passed as arguments
-			perhaps a checksorted() type function
-		- NOT IMPLEMENTING FOR NOW
-	- return a list of one particular category
+- must implement a way to enforce sorted vs unsorted lists being passed as arguments
+	perhaps a checksorted() type function
+	- NOT IMPLEMENTING FOR NOW - document
 
-- implement type checking - done
-	- test datetime/string type checking
-- implement checking for datetime object in dateSearch()
+----------------
 
--------------
+- return a list of one particular category
 
 - merging of two spreadsheets
 	- check if duplicates
