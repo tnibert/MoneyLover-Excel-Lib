@@ -83,6 +83,13 @@ def generateArray(rowClassList):	#takes argument of mlRows class and converts to
 
 	return rowArrayList
 
+def addEntry(workbklist, category, amount, note, wallet, currency, date):
+
+	return workbklist
+
+def removeEntry(workbklist, obj):
+
+	return workbklist
 
 #take the mlRows list as an argument, sort it, and return the sorted list
 def sortByCategory(workbklist):	
@@ -92,6 +99,10 @@ def sortByCategory(workbklist):
 def sortByDate(workbklist):
 
 	return sorted(workbklist, key=attrgetter('date'))
+
+def sortByID(workbklist):			#TEST
+
+	return sorted(workbklist, key=attrgetter('id'))
 
 #splice mlRows list based on criteria, return list of uniform category lists
 def spliceByCategory(workbklist):
