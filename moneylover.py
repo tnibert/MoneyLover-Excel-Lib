@@ -110,9 +110,10 @@ def addEntry(workbklist, category, amount, note, wallet, currency, date):
 	workbklist.append(mlRow(lst))		#construct
 	return workbklist
 
-#TEST
+#remove entry from workbklist by object address
+#the passed list is modified, and then returned as an extra feature
 def removeEntry(workbklist, obj):
-	workbklist.pop(obj)	#may need to pass index(obj)
+	workbklist.remove(obj)
 	return workbklist
 
 #may need to create a getEntryByID() function to have passable objects

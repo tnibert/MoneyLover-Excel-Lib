@@ -1,5 +1,7 @@
 - create automated script to run all tests after a change to make sure nothing else was broken
 
+- add getEntryByID() function
+
 - check for a sorted list
 
 - format documentation nicely
