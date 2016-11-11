@@ -1,21 +1,39 @@
 import openpyxl
 from operator import attrgetter
 import datetime
+from copy import deepcopy
 
 #this class is a MoneyLover row
 #each row in the excel file becomes a class
 #we use a list of these to represent the whole file
 class mlRow():
+	#this one tuple passed as arg thing helped with import, but its a bane for adding entries...
 	def __init__(self, wbRow):
 		#wbRow is the row list as passed from the original sheet.rows[index] list returned
-		try: self.id = int(wbRow[0].value)
-		except ValueError: self.id = wbRow[0].value
-		self.category = wbRow[1].value
-		self.amount = wbRow[2].value
-		self.note = wbRow[3].value
-		self.wallet = wbRow[4].value
-		self.currency = wbRow[5].value
-		self.date = wbRow[6].value
+		#this is about to get really ugly and hackish T_T
+		#print type(wbRow)
+		#for x in wbRow: print x
+		#this first bit is for if we pass a Cell Sheet object tuple
+		try:
+			try: self.id = int(wbRow[0].value)
+			except ValueError: self.id = wbRow[0].value
+			self.category = wbRow[1].value
+			self.amount = wbRow[2].value
+			self.note = wbRow[3].value
+			self.wallet = wbRow[4].value
+			self.currency = wbRow[5].value
+			self.date = wbRow[6].value
+		#and this is if we pass straight data.. e.g. there is no .value attribute
+		except AttributeError:
+			self.id = wbRow[0]
+			self.category = wbRow[1]
+			self.amount = wbRow[2]
+			self.note = wbRow[3]
+			self.wallet = wbRow[4]
+			self.currency = wbRow[5]
+			self.date = wbRow[6]
+		#yeah.. I know... if you have a better idea, contribute to the project
+		#don't hate, levitate
 
 	def display(self):
 		print "ID: " + str(self.id)
@@ -51,7 +69,7 @@ def loadMLWorkbook(workbkfname):
 	header = mlRow(tuple(originalSheet.rows)[0])		#figure out how to keep green color for header
 
 	for line in range(1, originalSheet.max_row):		#start at 1, line 0 is category names (header)
-		#print tuple(originalSheet.rows)[1]
+		#print type((originalSheet.rows))
 		rowClassList.append(mlRow(tuple(originalSheet.rows)[line]))
 
 	#convert all dates to datetime objects
@@ -84,10 +102,12 @@ def generateArray(rowClassList):	#takes argument of mlRows class and converts to
 
 	return rowArrayList
 
-#TEST
 def addEntry(workbklist, category, amount, note, wallet, currency, date):
-	lastID = sortByID(workbklist)[-1].id
-	workbklist.append(mlRow(lastID, category, amount, note, wallet, currency, date))
+	if(type(date) is str): 
+		date = convertStrToDatetime(date)	#allows for passing either string or datetime obj to function
+	lastID = sortByID(workbklist)[-1].id	#sort by id to get last id
+	lst = [lastID+1, category, amount, note, wallet, currency, date]	#load up a list to pass to constructor
+	workbklist.append(mlRow(lst))		#construct
 	return workbklist
 
 #TEST
@@ -106,7 +126,7 @@ def sortByDate(workbklist):
 
 	return sorted(workbklist, key=attrgetter('date'))
 
-def sortByID(workbklist):			#TEST
+def sortByID(workbklist):
 
 	return sorted(workbklist, key=attrgetter('id'))
 
@@ -274,13 +294,16 @@ def dateSearchAll(date, sortedlist):
 
 #provide mlRows list as an argument and write it out to a new excel file specified by string newFileName
 def exportToNewWorkbook(header, mlWkbkClassList, newFileName):
-	for elem in mlWkbkClassList:
+	#print mlWkbkClassList
+	toWrite = deepcopy(mlWkbkClassList)		#make copy so we don't modify the original list
+	#print toWrite
+	for elem in toWrite:
 		elem.date = datetime.datetime.strftime(elem.date, "%m/%d/%Y")   #restore date to original text format
 
 	#we use the generateArray() function so that we can double iterate
 	#with for loops and easily assign the cells in the new sheet
-	mlWkbkClassList.insert(0, header)
-	genArray = generateArray(mlWkbkClassList)
+	toWrite.insert(0, header)
+	genArray = generateArray(toWrite)
 
 	newWorkbook = openpyxl.Workbook()
 	newSheet = newWorkbook.active

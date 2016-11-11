@@ -1,8 +1,4 @@
-15 October 2016 - CLEAN UP AND PREP FOR A RELEASE
-- license
-- turn into module
-
------------------
+- create automated script to run all tests after a change to make sure nothing else was broken
 
 - check for a sorted list
 
