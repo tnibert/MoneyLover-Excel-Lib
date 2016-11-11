@@ -8,7 +8,8 @@ import datetime
 class mlRow():
 	def __init__(self, wbRow):
 		#wbRow is the row list as passed from the original sheet.rows[index] list returned
-		self.id = wbRow[0].value
+		try: self.id = int(wbRow[0].value)
+		except ValueError: self.id = wbRow[0].value
 		self.category = wbRow[1].value
 		self.amount = wbRow[2].value
 		self.note = wbRow[3].value
@@ -83,13 +84,18 @@ def generateArray(rowClassList):	#takes argument of mlRows class and converts to
 
 	return rowArrayList
 
+#TEST
 def addEntry(workbklist, category, amount, note, wallet, currency, date):
-
+	lastID = sortByID(workbklist)[-1].id
+	workbklist.append(mlRow(lastID, category, amount, note, wallet, currency, date))
 	return workbklist
 
+#TEST
 def removeEntry(workbklist, obj):
-
+	workbklist.pop(obj)	#may need to pass index(obj)
 	return workbklist
+
+#may need to create a getEntryByID() function to have passable objects
 
 #take the mlRows list as an argument, sort it, and return the sorted list
 def sortByCategory(workbklist):	
