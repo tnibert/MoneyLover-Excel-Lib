@@ -1,0 +1,9 @@
+Sorting functions are as follows:
+
+sortByID(workbklist)
+Arguments:
+- workbklist: the mlRow list to sort
+
+This function takes an mlRow list as an argument and returns it in sorted form by the IDs of each entry ascending.
+
+There are also functions to sort by date and category.  These are defined in the date and category documentation files.

@@ -1,0 +1,23 @@
+There are two functions for adding and removing entries.
+
+def addEntry(workbklist, category, amount, note, wallet, currency, date)
+Arguments:
+- workbklist: the mlRow list to add to
+- category: string for category that transaction falls under
+- amount: integer or floating point number indicating amount of transaction, note that wallet debits are negative numbers and wallet credits are positive numbers
+- note: string for note about transaction
+- wallet: string for wallet that transaction came from
+- currency: string for currency used
+- date: a datetime object or string representation in mm/dd/yyyy format
+
+This function takes the arguments, creates a new mlRow object and appends it to the mlRow list.  It then returns the modified list.
+Note that this function both returns the list and the original list is modified, e.g. if you pass the return value to a variable
+you will have two copies of the same list.  The function assigns entry IDs on its own to avoid duplicates.
+
+def removeEntry(workbklist, obj)
+Arguments:
+- workbklist: the mlRow list to remove from
+- obj: the mlRow object that you want to remove from the list
+
+This function takes the arguments and removes the object obj from the list workbklist.  It then returns the modified list.
+Note like above, the original list will be modified AND that modified list will be returned.

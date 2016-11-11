@@ -32,6 +32,10 @@
 -------
 Process from 0.5 onward:
 
-Every new feature implemented gets its own branch
-Every new feature gets a specific test case written for it
-Upon passing test, merge to master
+Every new feature or bug fix implemented gets its own branch
+Every new feature or bug fix gets a specific test case written for it
+Upon passing test, create documentation of any new feature or changes to existing feature
+Submit pull request
+Merge to master if accepted
+
+Try to not change existing API
