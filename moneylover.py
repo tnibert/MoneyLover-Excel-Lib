@@ -117,6 +117,28 @@ def removeEntry(workbklist, obj):
 	return workbklist
 
 #may need to create a getEntryByID() function to have passable objects
+# ...copying and pasting code is bad >_<
+#here we have a binary search to find an object by it's unique ID int
+#returns the object
+#getByID() is wrapper for idSearch() so we can sort the list
+def getByID(workbklist, id):		#TEST
+	idSortedList = sortByID(workbklist)
+	return idSearch(idSortedList, id)
+
+#this is the pure binary search function, it will not be documented in the documentation
+#use by calling getByID(), returns object by unique ID, list must be id sorted already
+def idSearch(idSortedList, id):		#TEST
+	#base case
+        if len(idSortedList) == 1:
+                if(idSortedList[0].id != id): return -1
+                return idSortedList[0]
+
+        mid = len(idSortedList)/2
+        #print "length: " + str(len(lst)) + " mid: " + str(mid)
+        if idSortedList[mid].id <= id:
+                return getByID(idSortedList[mid:], id)
+        elif idSortedList[mid].id > id:
+                return getByID(idSortedList[:mid], id)
 
 #take the mlRows list as an argument, sort it, and return the sorted list
 def sortByCategory(workbklist):	
