@@ -1,0 +1,9 @@
+getByID(workbklist, id)
+
+Arguments:
+- workbklist: a list of mlRow objects
+- id: an int of the unique id to search for
+
+Returns the mlRow object with the id specified.  If unable to find, returns -1.
+
+Date searching functions documented in WorkingWithDates.txt.
