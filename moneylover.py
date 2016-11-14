@@ -119,7 +119,7 @@ def removeEntry(workbklist, obj):
 #may need to create a getEntryByID() function to have passable objects
 # ...copying and pasting code is bad >_<
 #here we have a binary search to find an object by it's unique ID int
-#returns the object
+#returns the object, -1 on error
 #getByID() is wrapper for idSearch() so we can sort the list
 def getByID(workbklist, id):		#TEST
 	idSortedList = sortByID(workbklist)
