@@ -36,14 +36,14 @@ class mlRow():
 		#don't hate, levitate
 
 	def display(self):
-		print "ID: " + str(self.id)
-		print "Category: " + str(self.category)
-		print "Amount: $" + str(self.amount)
-		print "Note: " + str(self.note)
-		print "Wallet: " + str(self.wallet)
-		print "Currency: " + str(self.currency)
-		print "Date: " + str(self.date)
-		print ""
+		print("ID: " + str(self.id))
+		print("Category: " + str(self.category))
+		print("Amount: $" + str(self.amount))
+		print("Note: " + str(self.note))
+		print("Wallet: " + str(self.wallet))
+		print("Currency: " + str(self.currency))
+		print("Date: " + str(self.date))
+		print("")
 
 	#returns true is self and row contain the same data
 	def compare(self, row):
@@ -186,7 +186,7 @@ def spliceDateRange(startdate, enddate, workbklist):
 		#dtstartdate = datetime.datetime.strptime(startdate, "%m/%d/%Y")
 		#dtenddate = datetime.datetime.strptime(enddate, "%m/%d/%Y")
 	except:
-		print "incorrect date format passed"
+		print("incorrect date format passed")
 		return -1
 
 	if(dtstartdate > dtenddate):	#if startdate is after enddate
@@ -248,7 +248,7 @@ def dateSearchClosest(date, directionstep, workbklist):
 
 	#check for bounds
 	if(directionstep == 0):
-		print "direction step must not be 0!"
+		print("direction step must not be 0!")
 		return -2
 	elif(date < workbklist[0].date and directionstep < 0):
 		return -1
@@ -285,7 +285,7 @@ def dateSearchAll(date, sortedlist):
 		if(type(date) is str): date = convertStrToDatetime(date)
 		#date = datetime.datetime.strptime(date, "%m/%d/%Y")		#convert date to a datetime object
 	except:
-		print "invalid format"
+		print("invalid format")
 		return -1
 
 	#get the index from the object returned by dateSearch()

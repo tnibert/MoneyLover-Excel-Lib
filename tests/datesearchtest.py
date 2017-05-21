@@ -3,8 +3,8 @@ from moneylover import *
 report, hdr = loadMLWorkbook("2016-10-10.xlsx")
 date = datetime.datetime.strptime("10/10/2016", "%m/%d/%Y")
 test = dateSearch(date, report)
-print type(test)
-print test
+print(type(test))
+print(test)
 test.display()
 
 #implement checking for datetime object in dateSearch()

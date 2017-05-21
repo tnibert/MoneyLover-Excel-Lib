@@ -5,7 +5,7 @@ import sys
 try:
 	fname = sys.argv[1]
 except:
-	print "call with python AddAllCategories.py FILENAME"
+	print("call with python AddAllCategories.py FILENAME")
 	exit()
 
 
@@ -18,7 +18,7 @@ separatedcats = spliceByCategory(lsClass)
 #iterate through categories and add up the total prices of each
 for category in separatedcats:
 	amount = 0
-	print category[0].category + " contains " + str(len(category)) + " entries"
+	print(category[0].category + " contains " + str(len(category)) + " entries")
 	for entry in category:
 		amount += entry.amount
-	print "Amount: " + str(amount) + "\n"
+	print("Amount: " + str(amount) + "\n")

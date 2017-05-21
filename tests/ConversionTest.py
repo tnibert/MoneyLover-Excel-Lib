@@ -16,16 +16,16 @@ closestdate2 = dateSearchClosest(dateobj1, 1, report)
 splice2 = spliceDateRange(dateobj1, dateobj2, report)
 
 if(closestdate1 == closestdate2):
-	print "dateSearchClosest() passed"
-	print closestdate1
-	print closestdate2
+	print("dateSearchClosest() passed")
+	print(closestdate1)
+	print(closestdate2)
 
 if(indexlist1 == indexlist2):
-	print "dateSearchAll() passed"
-	print indexlist1
-	print indexlist2
+	print("dateSearchAll() passed")
+	print(indexlist1)
+	print(indexlist2)
 
 if(splice1 == splice2):
-	print "spliceDateRange() passed"
+	print("spliceDateRange() passed")
 	for x in splice1: x.display()
 	for x in splice2: x.display()

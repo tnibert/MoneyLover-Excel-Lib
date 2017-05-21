@@ -8,7 +8,7 @@ try:
 	fname = sys.argv[1]
 	categoryname = "Groceries"
 except:
-	print "call with python TellsScript.py FILENAME"
+	print("call with python TellsScript.py FILENAME")
 	exit()
 
 #load excel file
@@ -30,12 +30,12 @@ for type in separatedcats:
 
 #if we didn't find it
 if(correctcategory == []):
-	print "Category not found"
+	print("Category not found")
 	exit()
 
 #initialize amount variable and print category data
 amount = 0
-print correctcategory[0].category + " contains " + str(len(correctcategory)) + " entries\n"
+print(correctcategory[0].category + " contains " + str(len(correctcategory)) + " entries\n")
 
 criteriatransactions = 0
 
@@ -47,5 +47,5 @@ for entry in correctcategory:
 		criteriatransactions += 1
 
 #display information
-print str(criteriatransactions) + " transactions over $30 from 6th of June 2016"
-print "Total Amount of transactions over $30: $" + str(amount) + "\n"
+print(str(criteriatransactions) + " transactions over $30 from 6th of June 2016")
+print("Total Amount of transactions over $30: $" + str(amount) + "\n")

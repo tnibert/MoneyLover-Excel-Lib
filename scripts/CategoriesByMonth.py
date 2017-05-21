@@ -7,7 +7,7 @@ import sys
 try:
 	fname = sys.argv[1]
 except:
-	print "call with python CategoriesByMonth.py FILENAME"
+	print("call with python CategoriesByMonth.py FILENAME")
 	exit()
 
 #load file
@@ -33,11 +33,11 @@ for category in record:
 
 	#print each category and within each category add up amounts for each month
 	#and display
-	print "Category: " + category[0].category
+	print("Category: " + category[0].category)
 	i = 1
 	for month in months:
 		amount = 0
 		for entry in month:
 			amount += entry.amount
-		print "\t" + "Month " + str(i) + ": " + str(amount)
+		print("\t" + "Month " + str(i) + ": " + str(amount))
 		i+=1

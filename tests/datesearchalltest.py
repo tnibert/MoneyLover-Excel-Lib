@@ -4,9 +4,9 @@ report, hdr = loadMLWorkbook("2016-10-10.xlsx")
 #date = datetime.datetime.strptime("6/17/2016", "%m/%d/%Y")
 report = sortByDate(report)
 test = dateSearchAll("7/29/2016", report)
-print test
+print(test)
 if test == -1:
-	print "NOT FOUND"
+	print("NOT FOUND")
 	exit()
 for i in test:
 	report[i].display()
