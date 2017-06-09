@@ -9,7 +9,7 @@ end = "8/10/2016"
 #	entry.display()
 splice = spliceDateRange(start, end, report)
 if splice == -1:
-	print "Error"
+	print("Error")
 	exit()
 for entry in splice:
 	entry.display()

@@ -9,7 +9,7 @@ try:
 	enddate = sys.argv[3]
 	newfname = sys.argv[4]
 except:
-	print "call with python GenerateDateSplice.py FILENAME STARTDATE ENDDATE NEWFILENAME"
+	print("call with python GenerateDateSplice.py FILENAME STARTDATE ENDDATE NEWFILENAME")
 	exit()
 
 #load file

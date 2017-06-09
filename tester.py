@@ -1,4 +1,4 @@
-from moneylover import *
+from .moneylover import *
 #import calculations as calc
 
 #mergeinto, hdr1 = loadMLWorkbook("ToMergeTo.xlsx")
@@ -25,9 +25,9 @@ report = []
 #print lsList
 
 test2 = spliceByCategory(report)
-print test2
+print(test2)
 test = spliceDateRange("06/01/2016", "07/12/2016", report)
-print test
+print(test)
 
 #sortedClassList = sortByCategory(lsClass)
 #test = 0
