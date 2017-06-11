@@ -1,5 +1,7 @@
 from moneylover import *
 
+#this file has more high level functions for tasks
+
 #take a list and add together all of the amounts in each category
 #return a hash table
 #def addAmountByCategory(mlRowList):
@@ -19,6 +21,7 @@ from moneylover import *
 
 #take a rowlist and start and end dates as args, return a dict of category:amount
 def tallyCategories(rowlist, startdate=-1, enddate=-1):
+#still need to implement date splicing
 
     #separate out list by categories
     separatedcats = spliceByCategory(rowlist)
