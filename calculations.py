@@ -21,7 +21,7 @@ from moneylover import *
 def tallyCategories(rowlist, startdate=-1, enddate=-1):
 
     #separate out list by categories
-    separatedcats = spliceByCategory(lsClass)
+    separatedcats = spliceByCategory(rowlist)
 
     tallydict = {}
 
