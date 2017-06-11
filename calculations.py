@@ -17,5 +17,21 @@ from moneylover import *
 
 #	return
 
-def tallyCategories(rowlist, startdate=NULL, enddate=NULL):
-    return
+#take a rowlist and start and end dates as args, return a dict of category:amount
+def tallyCategories(rowlist, startdate=-1, enddate=-1):
+
+    #separate out list by categories
+    separatedcats = spliceByCategory(lsClass)
+
+    tallydict = {}
+
+    #iterate through categories and add up the total prices of each
+    for category in separatedcats:
+        amount = 0
+	    #print(category[0].category + " contains " + str(len(category)) + " entries")
+        for entry in category:
+            amount += entry.amount
+	    #print("Amount: " + str(amount) + "\n")
+        tallydict[category[0].category] = amount
+
+    return tallydict
