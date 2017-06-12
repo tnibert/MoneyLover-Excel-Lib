@@ -20,9 +20,16 @@ def categorybargraph(rowlist):
     #plt.bar(y_pos, performance, align='center', alpha=0.5)
     #plt.xticks(y_pos, objects)
 
-    plt.bar(range(len(categoryamountdict)), categoryamountdict.values(), align='center')
-    plt.xticks(range(len(categoryamountdict)), categoryamountdict.keys())
+    #plt.bar(range(len(categoryamountdict)), categoryamountdict.values(), align='center')
+    plt.bar(np.arange(len(categoryamountdict)), categoryamountdict.values(), align='center', alpha=0.5)
+    plt.xticks(np.arange(len(categoryamountdict)), categoryamountdict.keys())
     plt.ylabel('Amount')
     plt.title('Spending By Category')
+    locs, labels = plt.xticks()
+    plt.setp(labels, rotation=30, horizontalalignment='right')
 
     plt.show()
+
+
+
+#graph one category over time
