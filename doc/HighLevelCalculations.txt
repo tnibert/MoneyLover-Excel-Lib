@@ -3,3 +3,4 @@ These functions are located in calculations.py.
 tallyCategories(rowlist, startdate=-1, enddate=-1)
 
 Argument rowlist is a list of mlRow objects.  Arguments startdate and enddate indicate date slice and are optional.  Date slicing has not yet been implemented.
+Returns a dict of form { category : amount }

@@ -5,7 +5,6 @@ from moneylover import *
 #take a rowlist and start and end dates as args, return a dict of category:amount
 def tallyCategories(rowlist, startdate=-1, enddate=-1):
 #still need to implement date splicing
-#still need to document
 
     #separate out list by categories
     separatedcats = spliceByCategory(rowlist)
