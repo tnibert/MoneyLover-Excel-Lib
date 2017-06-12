@@ -15,5 +15,5 @@ success = True
 lsClass, hdr = loadMLWorkbook(fname)
 
 #test the function
-categorybargraph(lsClass)
+categoryBarGraph(lsClass)
 

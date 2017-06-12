@@ -11,14 +11,8 @@ import matplotlib.pyplot as plt
 from moneylover import *
 from calculations import *
 
-def categorybargraph(rowlist):
+def categoryBarGraph(rowlist):
     categoryamountdict = tallyCategories(rowlist)
-    #objects = ('Python', 'C++', 'Java', 'Perl', 'Scala', 'Lisp')
-    #y_pos = np.arange(len(objects))
-    #performance = [10,8,6,4,2,1]
-
-    #plt.bar(y_pos, performance, align='center', alpha=0.5)
-    #plt.xticks(y_pos, objects)
 
     #plt.bar(range(len(categoryamountdict)), categoryamountdict.values(), align='center')
     plt.bar(np.arange(len(categoryamountdict)), categoryamountdict.values(), align='center', alpha=0.5)
@@ -32,4 +26,4 @@ def categorybargraph(rowlist):
 
 
 
-#graph one category over time
+#new function: graph one category over time
