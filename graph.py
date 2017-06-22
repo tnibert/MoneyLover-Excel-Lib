@@ -10,6 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from moneylover import *
 from calculations import *
+from matplotlib import cm
 
 def categoryBarGraph(rowlist):
     categoryamountdict = tallyCategories(rowlist)
@@ -30,7 +31,13 @@ def categoryPieGraph(rowlist):
     categoryamountdict = tallyCategories(rowlist)
     positivevalues = map(abs, categoryamountdict.values())
 
-    plt.pie(positivevalues, labels=categoryamountdict.keys(), autopct='%1.1f%%', shadow=True, startangle=140)
+    #colors = ['yellowgreen', 'red', 'gold', 'lightskyblue',
+    #        'white','lightcoral','blue','pink', 'darkgreen',
+    #        'yellow','grey','violet','magenta','cyan']
+
+    colors=cm.Set1(np.arange(40)/80.)
+
+    plt.pie(positivevalues, labels=categoryamountdict.keys(), autopct='%1.1f%%', shadow=True, colors=colors, startangle=140)
     plt.axis('equal')
     plt.show()
 
