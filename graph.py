@@ -25,5 +25,14 @@ def categoryBarGraph(rowlist):
     plt.show()
 
 
+#create a pie graph of all categories
+def categoryPieGraph(rowlist):
+    categoryamountdict = tallyCategories(rowlist)
+    positivevalues = map(abs, categoryamountdict.values())
+
+    plt.pie(positivevalues, labels=categoryamountdict.keys(), autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+    plt.show()
+
 
 #new function: graph one category over time
