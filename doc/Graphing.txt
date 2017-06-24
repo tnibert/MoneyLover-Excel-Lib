@@ -2,4 +2,8 @@ These functions are located in graph.py.
 
 categoryBarGraph(rowlist)
 
-Argument passed rowlist is a list of mlRow objects.  The function then displays a graph showing the amount in each category.  Graph may need to be maximized to fully display categories.
+Argument passed rowlist is a list of mlRow objects.  The function then displays a graph showing the amount in each category.  Graph may need to be maximized to fully display categories.  Returns pyplot object of graph.
+
+categoryPieGraph(rowlist, type=0)
+
+Arguments passed - rowlist is a list of mlRow objects, type is a positive or negative number to indicate if income or expenses are to be graphed (positive is income, negative is expenses).  Returns pyplot object of graph.  Displays graph.
