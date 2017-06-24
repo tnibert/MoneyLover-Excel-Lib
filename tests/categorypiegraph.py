@@ -16,4 +16,5 @@ lsClass, hdr = loadMLWorkbook(fname)
 
 #test the function
 categoryPieGraph(lsClass)
-
+categoryPieGraph(lsClass, -1)
+categoryPieGraph(lsClass, 1)
