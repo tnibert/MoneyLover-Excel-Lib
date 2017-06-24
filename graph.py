@@ -11,6 +11,7 @@ import matplotlib.pyplot as plt
 from moneylover import *
 from calculations import *
 from matplotlib import cm
+import matplotlib.patches as mpatches
 
 def categoryBarGraph(rowlist):
     categoryamountdict = tallyCategories(rowlist)
@@ -30,15 +31,52 @@ def categoryBarGraph(rowlist):
 def categoryPieGraph(rowlist):
     categoryamountdict = tallyCategories(rowlist)
     positivevalues = map(abs, categoryamountdict.values())
+    categories = categoryamountdict.keys()
 
-    #colors = ['yellowgreen', 'red', 'gold', 'lightskyblue',
-    #        'white','lightcoral','blue','pink', 'darkgreen',
-    #        'yellow','grey','violet','magenta','cyan']
+    #make colors
+    #cmap = cm.prism
+    #colors = cmap(len(positivevalues))
+    #color=cm.rainbow(np.linspace(0,10,len(categories)*10))
+    my_cmap = cm.get_cmap('rainbow')
+    colors = plt.cm.Set1(np.linspace(0,1,len(categories)))
 
-    colors=cm.Set1(np.arange(40)/80.)
+    patches = plt.pie(positivevalues, autopct='%1.1f%%', labels=categories, colors=colors, startangle=140) # radius=1.2)
 
-    plt.pie(positivevalues, labels=categoryamountdict.keys(), autopct='%1.1f%%', shadow=True, colors=colors, startangle=140)
+    #categories = categoryamountdict.keys()
+
+    #patches = [patch.label for patch in patches]
+
+    #positivevalues=np.array(positivevalues)
+
+    labels = ['{0} - ${1} - {2:2.2f} %'.format(i,j,k) for i,j,k in zip(categories, positivevalues, [100*(x/sum(positivevalues)) for x in positivevalues])]
+
+    #sort legend
+    #patches, labels, dummy =  zip(*sorted(zip(patches, labels, positivevalues),
+                                          #key=lambda categories: categories[2],
+                                          #reverse=True))
+
+    #plt.legend(patches, categories, loc='best', #bbox_to_anchor=(-0.1, 1.),
+    #       fontsize=8)
+
+    #plt.legend(label=categoryamountdict.keys())
+
+    #colors_lables = zip(colors, categories)
+    #colors_lables = list(set(colors_lables))
+    #lables = [lable for color,lable in colors_lables]
+
+    # create some patchs of colors
+    #lables_patchs = []
+    #for item in c_l:
+        #add_patch = mpatches.Patch(color=item[0], label=item[1])
+        #lables_patchs.append(add_patch)
+
+    plt.legend(labels, loc="upper right", bbox_to_anchor=(1.1, 1.05))
+
+
+    #plt.savefig('piechart.png', bbox_inches='tight')
+
     plt.axis('equal')
+    #plt.tight_layout()
     plt.show()
 
 
