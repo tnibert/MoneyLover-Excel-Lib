@@ -12,12 +12,15 @@ def dataframeToFile(df, fname):
 		writer = pd.ExcelWriter(fname, engine='xlsxwriter')
 		df.to_excel(writer,'Money Lover Report')
 		return 1
-	except:
-		print "Dataframe file write failed"
+	except Exception as e:
+		print("Dataframe file write failed")
+        print(e)
 		return -1
 
 def dataframeTomlRow(df):
-	pass
+	for index, row in df.iterrows():
+        print index
+        print row
 
 def mlRowToDataframe(ls):
 	pass
