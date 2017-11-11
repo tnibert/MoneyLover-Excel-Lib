@@ -45,8 +45,8 @@ class mlRow():
 		print("Date: " + str(self.date))
 		print("")
 
-    def __str__(self):
-        self.display()
+    #def __str__(self):
+    #    self.display()
 
 	#returns true is self and row contain the same data
 	def compare(self, row):
